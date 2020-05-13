@@ -23,7 +23,7 @@ feign:
            timeoutInMilliseconds: 5000
   enabled: true               #打开断路器
   polling-interval-ms: 2000   #刷新间隔
- 
+
     
 hello-service: #服务调用的名字
   ribbon: 

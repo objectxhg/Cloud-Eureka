@@ -1,0 +1,25 @@
+server:
+  port: 8050
+
+spring:
+  application:
+    name: xhg-zuul
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:1111/eureka/,http://peer2:2222/eureka/
+
+zuul:
+  routes:                   
+    app-hello:              
+      path: /user/**        
+      serviceId: feign-consumer 
+# 默认会把所有注册在eureka上的微服务都反向代理
+# routes    路由
+# app-hello 可以随意写但不能重复
+# path      映射了一个路径 相当于在 下面 feign-consumer解析访问路径的时候在前面加了一层 /user 
+#           方便过滤， 不同的前缀支持不同的权限过滤
+#           比如    http://localhost:3333/hello/{name}
+#               http://localhost:3333/user/hello/{name}
+# serviceId 提供者在注册中心的名称  解析后称为提供者的访问路径
