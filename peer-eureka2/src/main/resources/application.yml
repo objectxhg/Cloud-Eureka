@@ -1,0 +1,25 @@
+server: 
+    port: 2222
+    
+spring:
+  application:
+    name: peer-server    
+    
+eureka:
+  server:
+    #关闭保护机制 以确保注册中心将不可用的实例正确剔除  （原因：Eureka Server会统计这个实例15分钟内心跳失败的几率是否低于85% 如果低于
+    # 那么Eureka Server  会将这个实例保护起来,让它不会过期，但是保护期间实例出了问题的话,就会有可能调用一个不存在的服务实例 而导致调用失败
+    # 所以客户端必须要有容错机制比如 请求重试或者断路器等机制 或是关闭注册中心的保护机制）
+    enable-self-preservation: false 
+  instance: 
+    #注册到eurekaip地址(注册中心IP)
+    hostname: peer2
+  client: 
+    #默认状态下该服务注册中心也会将自己作为客户端来注册它们自己,因为我们这里是单节点配置,所以设置为false (高可用,集群时设置为true)
+    register-with-eureka: true 
+    #由于注册中心的职责就是维护服务实例,它并不需要去检索服务，所以也设置为false (高可用,集群时设置为true,同步其他节点的数据)
+    fetch-registry: true 
+    service-url:
+      defaultZone: http://peer1:1111/eureka/
+        
+      

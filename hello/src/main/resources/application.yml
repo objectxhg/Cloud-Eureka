@@ -1,0 +1,18 @@
+server:
+  port: 3333
+
+spring:
+  application:
+    name: hello-service
+
+eureka:
+  #instance:
+    #prefer-ip-address: true
+    #instance-id: loaclhost:${server.port}
+  client:
+    service-url: 
+      #指定注册中心的地址
+      defaultZone: http://peer1:1111/eureka/,http://peer2:2222/eureka/
+logging:
+  level:
+    root: INFO
