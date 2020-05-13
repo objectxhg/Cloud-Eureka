@@ -42,7 +42,7 @@ public class helloController {
 	 * 会有一个bug 断路器启动后，第一次访问就到断路器，不正常。第一次进入断路器不算数
 	 */
 	public String fallbackHello(String name) {
-		return "服务器正忙";   
+		return "服务器正忙! Hystrix";   
 	}
 	
 	@RequestMapping("/get/{id}/{type}")
