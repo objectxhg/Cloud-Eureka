@@ -1,0 +1,23 @@
+server: 
+  port: 7010
+
+# 配置git仓库地址
+spring: 
+  application: 
+    name: config-server
+    
+  cloud: 
+    config: 
+      label: master 
+      server: 
+        git: 
+          username: objectxhg
+          password: aaa85444
+          uri: https://github.com/objectxhg/CloudConfig
+          # 配置仓库的分支
+          # 访问git仓库的用户密码 如果Git仓库为公开仓库，可以不填写用户名和密码，如果是私有仓库需要填写
+
+eureka: 
+  client: 
+    service-url: 
+      defaultZone: http://peer1:1111/eureka/,http://peer2:2222/eureka/
